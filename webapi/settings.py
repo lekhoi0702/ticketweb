@@ -140,10 +140,14 @@ REST_FRAMEWORK = {
     ),
 }
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('ticketweb-mbk2.onrender.com')
 
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, 'localhost', '127.0.0.1']
-else:
-    # Dùng cho môi trường local
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = ['ticketweb-mbk2.onrender.com']
+if DEBUG:
+    ALLOWED_HOSTS += ['localhost', '127.0.0.1']
+RENDER_HOST = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_HOST:
+ 
+    ALLOWED_HOSTS.append(RENDER_HOST)
+
+
