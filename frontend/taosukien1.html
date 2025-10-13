@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo Sự Kiện - Ticket Booking</title>
+    <style>
+        /* Reset CSS */
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+        
+        * {
+            -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            margin: 0px;
+            height: 100%;
+        }
+        
+        button:focus-visible {
+            outline: 2px solid #4a90e2 !important;
+            outline: -webkit-focus-ring-color auto 5px !important;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+
+        /* CSS Variables */
+        :root {
+            --baseink: rgba(27, 27, 27, 1);
+            --title-color: rgba(0, 0, 0, 1);
+            --accent-color: rgba(23, 25, 33, 1);
+            --error-color: rgba(250, 28, 28, 1);
+            --basebase-dark: rgba(86, 92, 101, 1);
+            --grayscalegray-10: rgba(230, 230, 230, 1);
+            --h3-font-family: "Public Sans", Helvetica;
+            --h3-font-weight: 700;
+            --h3-font-size: 22px;
+            --h3-letter-spacing: 0px;
+            --h3-line-height: normal;
+            --h3-font-style: normal;
+            --body-font-family: "Public Sans", Helvetica;
+            --body-font-weight: 400;
+            --body-font-size: 16px;
+            --body-letter-spacing: 0px;
+            --body-line-height: 150%;
+            --body-font-style: normal;
+            --single-line-body-base-font-family: "Inter", Helvetica;
+            --single-line-body-base-font-weight: 400;
+            --single-line-body-base-font-size: 16px;
+            --single-line-body-base-letter-spacing: 0px;
+            --single-line-body-base-line-height: 100%;
+            --single-line-body-base-font-style: normal;
+            --title-font-family: "Spartan", Helvetica;
+            --title-font-weight: 700;
+            --title-font-size: 14px;
+            --title-letter-spacing: 0px;
+            --title-line-height: normal;
+            --title-font-style: normal;
+            --input-font-family: "Roboto Mono", Helvetica;
+            --input-font-weight: 500;
+            --input-font-size: 11px;
+            --input-letter-spacing: 0px;
+            --input-line-height: normal;
+            --input-font-style: normal;
+            --error-font-family: "Spartan", Helvetica;
+            --error-font-weight: 400;
+            --error-font-size: 12px;
+            --error-letter-spacing: 0px;
+            --error-line-height: normal;
+            --error-font-style: normal;
+        }
+
+        /* Main Styles */
+        .desktop-create-event {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .desktop-create-event .div {
+            background-color: #ffffff;
+            width: 1440px;
+            height: 2048px;
+            position: relative;
+        }
+
+        .desktop-create-event .footer {
+            position: absolute;
+            width: 1440px;
+            height: 648px;
+            top: 1400px;
+            left: 0;
+            background-color: #565c65;
+        }
+
+        .desktop-create-event .thng-tin-lin-lc {
+            display: flex;
+            width: 1440px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 32px;
+            position: absolute;
+            top: 493px;
+            left: 0;
+            background-color: var(--grayscalegray-10);
+        }
+
+        .desktop-create-event .agency {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            flex: 0 0 auto;
+        }
+
+        .desktop-create-event .ellipse {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .desktop-create-event .text-wrapper {
+            position: relative;
+            width: fit-content;
+            font-family: var(--h3-font-family);
+            font-weight: var(--h3-font-weight);
+            color: var(--baseink);
+            font-size: var(--h3-font-size);
+            letter-spacing: var(--h3-letter-spacing);
+            line-height: var(--h3-line-height);
+            white-space: nowrap;
+            font-style: var(--h3-font-style);
+        }
+
+        .desktop-create-event .contact {
+            position: relative;
+            width: 297px;
+            height: 114px;
+        }
+
+        .desktop-create-event .socials {
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 8px;
+            position: absolute;
+            top: 0;
+            left: 25px;
+        }
+
+        .desktop-create-event .icon-wrapper {
+            display: inline-flex;
+            align-items: flex-start;
+            padding: 4px;
+            position: relative;
+            flex: 0 0 auto;
+            background-color: #0000001a;
+        }
+
+        .desktop-create-event .icon {
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .desktop-create-event .agency-contact {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            position: absolute;
+            top: 60px;
+            left: 0;
+        }
+
+        .desktop-create-event .text-wrapper-2 {
+            position: relative;
+            width: fit-content;
+            margin-top: -1.00px;
+            font-family: var(--h3-font-family);
+            font-weight: var(--h3-font-weight);
+            color: var(--baseink);
+            font-size: var(--h3-font-size);
+            letter-spacing: var(--h3-letter-spacing);
+            line-height: var(--h3-line-height);
+            white-space: nowrap;
+            font-style: var(--h3-font-style);
+        }
+
+        .desktop-create-event .group {
+            position: relative;
+            width: 297px;
+            height: 24px;
+        }
+
+        .desktop-create-event .frame {
+            display: inline-flex;
+            gap: 32px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .desktop-create-event .text-wrapper-3 {
+            position: relative;
+            width: fit-content;
+            margin-top: -1.00px;
+            font-family: "Public Sans-Regular", Helvetica;
+            font-weight: 400;
+            color: var(--baseink);
+            font-size: 16px;
+            letter-spacing: 0;
+            line-height: 24px;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .doc {
+            position: absolute;
+            width: 280px;
+            height: 124px;
+            top: 50px;
+            left: 350px;
+        }
+
+        .desktop-create-event .text-wrapper-4 {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: 20px;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .p {
+            position: absolute;
+            top: 110px;
+            left: 0;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: 14.4px;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .text-wrapper-5 {
+            position: absolute;
+            top: 55px;
+            left: 0;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: 14.4px;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .about-us {
+            position: absolute;
+            width: 193px;
+            height: 185px;
+            top: 50px;
+            left: 10px;
+        }
+
+        .desktop-create-event .text-wrapper-6 {
+            position: absolute;
+            width: 200px;
+            top: 0;
+            left: 20px;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 20px;
+            text-align: left;
+            letter-spacing: 0;
+            line-height: 20.0px;
+        }
+
+        .desktop-create-event .text-wrapper-7 {
+            position: absolute;
+            width: 200px;
+            top: 55px;
+            left: 0;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: left;
+            letter-spacing: 0;
+            line-height: 14.4px;
+        }
+
+        .desktop-create-event .text-wrapper-8 {
+            position: absolute;
+            width: 200px;
+            top: 111px;
+            left: 0;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: left;
+            letter-spacing: 0;
+            line-height: 14.4px;
+        }
+
+        .desktop-create-event .text-wrapper-9 {
+            position: absolute;
+            width: 200px;
+            top: 166px;
+            left: 0;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: left;
+            letter-spacing: 0;
+            line-height: 14.4px;
+        }
+
+        .desktop-create-event .header {
+            position: absolute;
+            width: 1440px;
+            height: 100px;
+            top: 0;
+            left: 0;
+            background-color: #d9d9d9;
+        }
+
+        .desktop-create-event .text-wrapper-10 {
+            position: absolute;
+            top: 41px;
+            left: 29px;
+            font-family: var(--single-line-body-base-font-family);
+            font-weight: var(--single-line-body-base-font-weight);
+            color: #005ea2;
+            font-size: var(--single-line-body-base-font-size);
+            letter-spacing: var(--single-line-body-base-letter-spacing);
+            line-height: var(--single-line-body-base-line-height);
+            white-space: nowrap;
+            font-style: var(--single-line-body-base-font-style);
+        }
+
+        .desktop-create-event .account {
+            position: absolute;
+            width: 217px;
+            height: 75px;
+            top: 12px;
+            left: 1117px;
+        }
+
+        .desktop-create-event .text-wrapper-11 {
+            top: 31px;
+            left: 98px;
+            color: #005ea2;
+            font-size: 16px;
+            line-height: 14.4px;
+            position: absolute;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .ellipse-2 {
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            top: 0;
+            left: 0;
+            background-color: #565c65;
+            border-radius: 37.5px;
+        }
+
+        .desktop-create-event .account-arrow {
+            font-size: 14px;
+            color: #333;
+            top: 31px;
+            left: 200px;
+            position: absolute;
+        }
+
+        .desktop-create-event .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 45px;
+            left: 200px;
+            width: 100px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .desktop-create-event .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .desktop-create-event .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .desktop-create-event .account:hover .dropdown-menu {
+            display: block;
+        }
+
+        .desktop-create-event .text-wrapper-12 {
+            position: absolute;
+            top: 33px;
+            left: 304px;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #000000;
+            font-size: 36px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: 32.4px;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .left-side {
+            position: absolute;
+            width: 300px;
+            height: 1300px;
+            top: 100px;
+            left: 0;
+            background-color: #14ae5c;
+        }
+
+        .desktop-create-event .to-s-kin {
+            position: absolute;
+            width: 145px;
+            height: 24px;
+            top: 60px;
+            left: 60px;
+        }
+
+        .desktop-create-event .icon-2 {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 0;
+            left: 119px;
+        }
+
+        .desktop-create-event .text-wrapper-13 {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #374957;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: 14.4px;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .event {
+            position: absolute;
+            width: 164px;
+            height: 24px;
+            top: 140px;
+            left: 60px;
+        }
+
+        .desktop-create-event .text-wrapper-14 {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: 14.4px;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .icon-3 {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 0;
+            left: 138px;
+        }
+
+        .desktop-create-event .right-side {
+            position: absolute;
+            width: 1140px;
+            height: 1300px;
+            top: 100px;
+            left: 300px;
+            background-color: #aff4c6;
+        }
+
+        .desktop-create-event .short-answer {
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 10px;
+            position: absolute;
+            top: 154px;
+            left: 70px;
+        }
+
+        .desktop-create-event .text-wrapper-15 {
+            position: relative;
+            align-self: stretch;
+            margin-top: -1.00px;
+            font-family: var(--title-font-family);
+            font-weight: var(--title-font-weight);
+            color: var(--title-color);
+            font-size: var(--title-font-size);
+            letter-spacing: var(--title-letter-spacing);
+            line-height: var(--title-line-height);
+            font-style: var(--title-font-style);
+        }
+
+        .desktop-create-event .div-wrapper {
+            display: flex;
+            height: 40px;
+            align-items: center;
+            position: relative;
+            align-self: stretch;
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        .desktop-create-event .input-field {
+            flex: 1;
+            font-family: var(--input-font-family, Arial, sans-serif);
+            font-weight: var(--input-font-weight, 400);
+            color: var(--accent-color, #333);
+            font-size: var(--input-font-size, 16px);
+            letter-spacing: var(--input-letter-spacing, 0.5px);
+            line-height: var(--input-line-height, 1.5);
+            font-style: var(--input-font-style, normal);
+            border: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0 10px;
+        }
+
+        .desktop-create-event .input-field::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .desktop-create-event .input-field:focus {
+            color: #000;
+        }
+
+        .desktop-create-event .combo-box {
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 8px;
+            position: absolute;
+            top: 585px;
+            left: 72px;
+        }
+
+        .desktop-create-event .select-your-desired {
+            position: relative;
+            align-self: stretch;
+            margin-top: -1.00px;
+            font-family: "Spartan-Bold", Helvetica;
+            font-weight: 700;
+            color: var(--baseink);
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: 21px;
+        }
+
+        .desktop-create-event .dropdown {
+            position: relative;
+            padding: 4px 8px;
+            font-family: var(--body-font-family);
+            font-size: var(--body-font-size);
+            color: var(--baseink);
+            background-color: #ffffff;
+            border: 1px solid var(--basebase-dark);
+            border-radius: 4px;
+            cursor: pointer;
+            width: 390px;
+        }
+
+        .desktop-create-event .dropdown:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .desktop-create-event .group-2 {
+            position: absolute;
+            width: 892px;
+            height: 277px;
+            top: 272px;
+            left: 70px;
+        }
+
+        .desktop-create-event .text-wrapper-18 {
+            position: absolute;
+            top: 0;
+            left: 2px;
+            font-family: "Spartan-Bold", Helvetica;
+            font-weight: 700;
+            color: #000000;
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .short-answer-2 {
+            top: 35px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 10px;
+            position: absolute;
+        }
+
+        .desktop-create-event .frame-4 {
+            display: flex;
+            width: 390px;
+            height: 40px;
+            align-items: center;
+            position: relative;
+            background-color: #ffffff;
+        }
+
+        .desktop-create-event .short-answer-3 {
+            top: 208px;
+            left: 500px;
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 10px;
+            position: absolute;
+        }
+
+        .desktop-create-event .combo-box-2 {
+            top: 120px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 8px;
+            position: absolute;
+        }
+
+        .desktop-create-event .combo-box-3 {
+            top: 120px;
+            left: 500px;
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 8px;
+            position: absolute;
+        }
+
+        .desktop-create-event .combo-box-4 {
+            top: 208px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 8px;
+            position: absolute;
+        }
+
+        .desktop-create-event .short-answer-4 {
+            top: 953px;
+            left: 70px;
+            display: flex;
+            flex-direction: column;
+            width: 390px;
+            align-items: flex-start;
+            gap: 10px;
+            position: absolute;
+        }
+
+        .desktop-create-event .next-page {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 19px 60px;
+            position: absolute;
+            top: 1202px;
+            left: 875px;
+            background-color: var(--accent-color);
+            border-radius: 33px;
+            border: 1px solid;
+            border-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .desktop-create-event .text-wrapper-19 {
+            position: relative;
+            width: fit-content;
+            margin-top: -1.00px;
+            font-family: "Inter-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 23px;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .desktop-create-event .request-type {
+            position: absolute;
+            width: 1140px;
+            height: 80px;
+            top: 0;
+            left: 0;
+            background-color: #1e1e1e;
+        }
+
+        .desktop-create-event .overlap-group-wrapper {
+            position: absolute;
+            width: 202px;
+            height: 50px;
+            top: 15px;
+            left: 68px;
+        }
+
+        .desktop-create-event .overlap-group {
+            position: relative;
+            width: 200px;
+            height: 50px;
+            background-color: #14ae5c;
+            cursor: pointer;
+        }
+
+        .desktop-create-event .text-wrapper-20 {
+            position: absolute;
+            width: 96px;
+            top: 13px;
+            left: 52px;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 400;
+            color: #000000;
+            font-size: 20px;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .desktop-create-event .overlap-wrapper {
+            position: absolute;
+            width: 202px;
+            height: 50px;
+            top: 15px;
+            left: 604px;
+        }
+
+        .desktop-create-event .overlap {
+            position: relative;
+            width: 200px;
+            height: 50px;
+            background-color: #d9d9d9;
+        }
+
+        .desktop-create-event .overlap:hover {
+            background-color: #73de93;
+            cursor: pointer;
+        }
+
+        .desktop-create-event .text-wrapper-21 {
+            position: absolute;
+            width: 141px;
+            top: 13px;
+            left: 29px;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 400;
+            color: #000000;
+            font-size: 20px;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .desktop-create-event .group-3 {
+            position: absolute;
+            width: 202px;
+            height: 50px;
+            top: 15px;
+            left: 872px;
+        }
+
+        .desktop-create-event .text-wrapper-22 {
+            position: absolute;
+            width: 78px;
+            top: 13px;
+            left: 61px;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 400;
+            color: #000000;
+            font-size: 20px;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .desktop-create-event .group-4 {
+            position: absolute;
+            width: 202px;
+            height: 50px;
+            top: 15px;
+            left: 336px;
+        }
+
+        .desktop-create-event .text-wrapper-23 {
+            position: absolute;
+            top: 13px;
+            left: 58px;
+            font-family: "Public Sans-Bold", Helvetica;
+            font-weight: 400;
+            color: #000000;
+            font-size: 20px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .group-5 {
+            position: absolute;
+            width: 978px;
+            height: 244px;
+            top: 689px;
+            left: 69px;
+        }
+
+        .desktop-create-event .text-wrapper-24 {
+            position: absolute;
+            top: 0;
+            left: 1px;
+            font-family: "Spartan-Bold", Helvetica;
+            font-weight: 700;
+            color: #000000;
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .group-6 {
+            position: absolute;
+            width: 976px;
+            height: 211px;
+            top: 33px;
+            left: 0;
+        }
+
+        .desktop-create-event .overlap-2 {
+            position: relative;
+            height: 211px;
+        }
+
+        .desktop-create-event .rectangle {
+            width: 976px;
+            height: 209px;
+            top: 2px;
+            position: absolute;
+            left: 0;
+            background-color: #ffffff;
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            background-color: #f3f3f3;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .toolbar .btn {
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .toolbar .btn:hover {
+            background-color: #ddd;
+        }
+
+        .editor {
+            padding: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            outline: none;
+            background-color: #fff;
+            overflow-y: auto;
+            height: 150px;
+        }
+
+        .desktop-create-event .group-9 {
+            position: absolute;
+            width: 392px;
+            height: 118px;
+            top: 1062px;
+            left: 70px;
+        }
+
+        .desktop-create-event .text-wrapper-27 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: "Spartan-Bold", Helvetica;
+            font-weight: 700;
+            color: #000000;
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .desktop-create-event .rectangle-2 {
+            width: 390px;
+            height: 92px;
+            top: 26px;
+            position: absolute;
+            left: 0;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop-create-event">
+        <div class="div">
+            <footer class="footer">
+                <div class="thng-tin-lin-lc">
+                    <div class="agency">
+                        <img class="ellipse"/>
+                        <div class="text-wrapper">Ticket Booking</div>
+                    </div>
+                    <div class="contact">
+                        <div class="socials">
+                            <div class="icon-wrapper"><img class="icon" src="https://via.placeholder.com/40" alt="Facebook" /></div>
+                            <div class="icon-wrapper"><img class="icon" src="https://via.placeholder.com/40" alt="Twitter" /></div>
+                            <div class="icon-wrapper"><img class="icon" src="https://via.placeholder.com/40" alt="YouTube" /></div>
+                            <div class="icon-wrapper"><img class="icon" src="https://via.placeholder.com/40" alt="Instagram" /></div>
+                            <div class="icon-wrapper"><img class="icon" src="https://via.placeholder.com/40" alt="RSS" /></div>
+                        </div>
+                        <div class="agency-contact">
+                            <div class="text-wrapper-2">Follow us</div>
+                            <div class="group">
+                                <div class="frame">
+                                    <div class="text-wrapper-3">(08) 9453654</div>
+                                    <div class="text-wrapper-3">infoticket@gmail.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="doc">
+                    <div class="text-wrapper-4">Tài liệu</div>
+                    <p class="p">Điều khoản sử dụng khách hàng</p>
+                    <p class="text-wrapper-5">Điều khoản sử dụng cho ban tổ chức</p>
+                </div>
+                <div class="about-us">
+                    <div class="text-wrapper-6">Về chúng tôi</div>
+                    <div class="text-wrapper-7">Chính sách</div>
+                    <div class="text-wrapper-8">Quy chế</div>
+                    <div class="text-wrapper-9">Phương thức thanh toán</div>
+                </div>
+            </footer>
+
+            <header class="header">
+                <div class="text-wrapper-10">Ticket Booking</div>
+                <div class="account">
+                    <div class="text-wrapper-11">Tài khoản</div>
+                    <div class="ellipse-2"></div>
+                    <div class="account-arrow">▼</div>
+                    <div class="dropdown-menu">
+                        <a href="#">Thông tin tài khoản</a>
+                        <a href="#">Cài đặt</a>
+                        <a href="#">Đăng xuất</a>
+                    </div>
+                </div>
+                <div class="text-wrapper-12">Tạo sự kiện</div>
+            </header>
+
+            <div class="left-side">
+                <div class="to-s-kin">
+                    <img class="icon-2" src="https://via.placeholder.com/24" alt="Icon" />
+                    <div class="text-wrapper-13">Tạo sự kiện</div>
+                </div>
+                <div class="event">
+                    <div class="text-wrapper-14">Sự kiện đã tạo</div>
+                    <img class="icon-3" src="https://via.placeholder.com/24" alt="Icon" />
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="short-answer">
+                    <div class="text-wrapper-15">Tên sự kiện</div>
+                    <div class="div-wrapper">
+                        <input class="input-field" type="text" placeholder="Type here..." />
+                    </div>
+                </div>
+
+                <div class="combo-box">
+                    <div class="select-your-desired">Thể loại sự kiện</div>
+                    <select class="dropdown">
+                        <option value="phim">Phim</option>
+                        <option value="kich">Kịch</option>
+                        <option value="sukien">Sự kiện</option>
+                    </select>
+                </div>
+
+                <div class="group-2">
+                    <div class="text-wrapper-18">Địa chỉ sự kiện</div>
+                    <div class="short-answer-2">
+                        <div class="text-wrapper-15">tên địa chỉ</div>
+                        <div class="frame-4"><input class="input-field" type="text" placeholder="Type here..." /></div>
+                    </div>
+                    <div class="short-answer-3">
+                        <div class="text-wrapper-15">Số nhà / Đường</div>
+                        <div class="frame-4"><input class="input-field" type="text" placeholder="Type here..." /></div>
+                    </div>
+                    <div class="combo-box-2">
+                        <div class="select-your-desired">tỉnh / thành</div>
+                        <select class="dropdown primary-dropdown">
+                            <option value="">Chọn...</option>
+                            <option value="TpHCM">Thành phố Hồ Chí Minh</option>
+                            <option value="HN">Hà Nội</option>
+                            <option value="DN">Đà Nẵng</option>
+                        </select>
+                    </div>
+                    <div class="combo-box-3">
+                        <div class="select-your-desired">Quận / huyện</div>
+                        <select class="dropdown secondary-dropdown">
+                            <option value="">Chọn...</option>
+
+                            <option value="TpHCM">Thành phố Hồ Chí Minh</option>
+                            <option value="HN">Hà Nội</option>
+                            <option value="DN">Đà Nẵng</option>
+                       
+                            
+                        </select>
+                    </div>
+                    <div class="combo-box-4">
+                        <div class="select-your-desired">Phường / xã</div>
+                        <select class="dropdown">
+                            <option value="">Chọn...</option>
+                             <option value="TpHCM">Thành phố Hồ Chí Minh</option>
+                            <option value="HN">Hà Nội</option>
+                            <option value="DN">Đà Nẵng</option>
+                       
+                        </select>
+                    </div>
+                </div>
+
+                <div class="short-answer-4">
+                    <div class="text-wrapper-15">Tên ban tổ chức</div>
+                    <div class="div-wrapper"><input class="input-field" type="text" placeholder="Type here..." /></div>
+                </div>
+
+                <div class="next-page"><div class="text-wrapper-19">Next Page</div></div>
+
+                <div class="request-type">
+                    <div class="overlap-group-wrapper">
+                        <div class="overlap-group"><div class="text-wrapper-20">Thông tin</div></div>
+                    </div>
+                    <div class="overlap-wrapper">
+                        <div class="overlap"><div class="text-wrapper-21">Vé và thời gian</div></div>
+                    </div>
+                    <div class="group-3">
+                        <div class="overlap"><div class="text-wrapper-22">Cài đặt</div></div>
+                    </div>
+                    <div class="group-4">
+                        <div class="overlap"><div class="text-wrapper-23">Hình ảnh</div></div>
+                    </div>
+                </div>
+                <div class="group-5">
+                    <div class="text-wrapper-24">Thông tin sự kiện</div>
+                    <div class="group-6">
+                        <div class="overlap-2">
+                            <div class="rectangle">
+                                <div class="toolbar">
+                                    <button class="btn"><b>B</b></button>
+                                    <button class="btn"><i>I</i></button>
+                                    <button class="btn"><u>U</u></button>
+                                    <button class="btn" style="color: green;">A</button>
+                                    <button class="btn">↓</button>
+                                    <button class="btn">☰</button>
+                                    <button class="btn">•</button>
+                                    <button class="btn">1.</button>
+                                    <button class="btn">🖼</button>
+                                    <button class="btn">🎥</button>
+                                </div>
+                                <div class="editor" contenteditable="true">
+                                    <!-- Người dùng nhập nội dung tại đây -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group-9">
+                    <p class="text-wrapper-27">Thông tin ban tổ chức</p>
+                    <div class="rectangle-2">
+                        <div class="editor" contenteditable="true">
+                            <!-- Người dùng nhập nội dung tại đây -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <script src="api.js"></script>
+<script src="page1-script.js"></script>
+</body>
+</html>
