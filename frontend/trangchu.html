@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Booking - Đặt vé sự kiện</title>
+  <style>
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&family=Merriweather:wght@700&family=Inter:wght@400&display=swap');
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0px;
+      height: 100%;
+    }
+
+    button:focus-visible {
+      outline: 2px solid #4a90e2 !important;
+      outline: -webkit-focus-ring-color auto 5px !important;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    :root {
+      --baseink: rgba(27, 27, 27, 1);
+      --basewhite: rgba(255, 255, 255, 1);
+      --primaryprimary: rgba(0, 94, 162, 1);
+      --accent-warmaccent-warm: rgba(250, 148, 65, 1);
+      --basebase-lighter: rgba(223, 225, 226, 1);
+      --grayscalegray-10: rgba(230, 230, 230, 1);
+      --h3-font-family: "Public Sans", Helvetica;
+      --h3-font-weight: 700;
+      --h3-font-size: 22px;
+      --h3-letter-spacing: 0px;
+      --h3-line-height: normal;
+      --h3-font-style: normal;
+      --body-font-family: "Public Sans", Helvetica;
+      --body-font-weight: 400;
+      --body-font-size: 16px;
+      --body-letter-spacing: 0px;
+      --body-line-height: 162%;
+      --body-font-style: normal;
+      --single-line-body-base-font-family: "Inter", Helvetica;
+      --single-line-body-base-font-weight: 400;
+      --single-line-body-base-font-size: 16px;
+      --single-line-body-base-letter-spacing: 0px;
+      --single-line-body-base-line-height: 100%;
+      --single-line-body-base-font-style: normal;
+    }
+
+    .desktop-home-guest {
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .desktop-home-guest .div {
+      background-color: #ffffff;
+      overflow: hidden;
+      width: 1440px;
+      height: 3305px;
+      position: relative;
+    }
+
+    .desktop-home-guest .footer {
+      position: absolute;
+      width: 1440px;
+      height: 648px;
+      top: 2657px;
+      left: 0;
+      background-color: #565c65;
+    }
+
+    .desktop-home-guest .thng-tin-lin-lc {
+      display: flex;
+      width: 1440px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      position: absolute;
+      top: 493px;
+      left: 0;
+      background-color: var(--grayscalegray-10);
+    }
+
+    .desktop-home-guest .agency {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .desktop-home-guest .ellipse {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      background-color: #005ea2;
+      border-radius: 50%;
+    }
+
+    .desktop-home-guest .text-wrapper {
+      position: relative;
+      width: fit-content;
+      font-family: var(--h3-font-family);
+      font-weight: var(--h3-font-weight);
+      color: var(--baseink);
+      font-size: var(--h3-font-size);
+      letter-spacing: var(--h3-letter-spacing);
+      line-height: var(--h3-line-height);
+      white-space: nowrap;
+      font-style: var(--h3-font-style);
+    }
+
+    .desktop-home-guest .contact {
+      position: relative;
+      width: 297px;
+      height: 114px;
+    }
+
+    .desktop-home-guest .socials {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 8px;
+      position: absolute;
+      top: 0;
+      left: 25px;
+    }
+
+    .desktop-home-guest .icon-wrapper {
+      display: inline-flex;
+      align-items: flex-start;
+      padding: 4px;
+      position: relative;
+      flex: 0 0 auto;
+      background-color: #0000001a;
+      border-radius: 4px;
+    }
+
+    .desktop-home-guest .icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      background-color: #ccc;
+      border-radius: 4px;
+    }
+
+    .desktop-home-guest .agency-contact {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+    }
+
+    .desktop-home-guest .text-wrapper-2 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1.00px;
+      font-family: var(--h3-font-family);
+      font-weight: var(--h3-font-weight);
+      color: var(--baseink);
+      font-size: var(--h3-font-size);
+      letter-spacing: var(--h3-letter-spacing);
+      line-height: var(--h3-line-height);
+      white-space: nowrap;
+      font-style: var(--h3-font-style);
+    }
+
+    .desktop-home-guest .group {
+      position: relative;
+      width: 297px;
+      height: 24px;
+    }
+
+    .desktop-home-guest .frame {
+      display: inline-flex;
+      gap: 32px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .desktop-home-guest .text-wrapper-3 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1.00px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 400;
+      color: var(--baseink);
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+
+    .desktop-home-guest .doc {
+      position: absolute;
+      width: 280px;
+      height: 124px;
+      top: 50px;
+      left: 350px;
+    }
+
+    .desktop-home-guest .text-wrapper-4 {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 20px;
+      white-space: nowrap;
+    }
+
+    .desktop-home-guest .p {
+      position: absolute;
+      top: 110px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-home-guest .text-wrapper-5 {
+      position: absolute;
+      top: 55px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-home-guest .about-us {
+      position: absolute;
+      width: 193px;
+      height: 185px;
+      top: 50px;
+      left: 10px;
+    }
+
+    .desktop-home-guest .text-wrapper-6 {
+      position: absolute;
+      width: 200px;
+      top: 0;
+      left: 20px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 20px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 20.0px;
+    }
+
+    .desktop-home-guest .text-wrapper-7 {
+      position: absolute;
+      width: 200px;
+      top: 55px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-home-guest .text-wrapper-8 {
+      position: absolute;
+      width: 200px;
+      top: 111px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-home-guest .text-wrapper-9 {
+      position: absolute;
+      width: 200px;
+      top: 166px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-home-guest .s-kin-nm-nay {
+      position: absolute;
+      width: 1440px;
+      height: 600px;
+      top: 800px;
+      left: 0;
+      background-color: #ffffff;
+    }
+
+    .desktop-home-guest .card {
+      display: flex;
+      flex-direction: column;
+      width: 297px;
+      height: 450px;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: absolute;
+      top: 70px;
+      left: 30px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid;
+      border-color: var(--basebase-lighter);
+    }
+
+    .desktop-home-guest .frame-2 {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      align-self: stretch;
+      width: 100%;
+      flex: 0 0 auto;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .desktop-home-guest .card-title-wrapper {
+      display: flex;
+      gap: 10px;
+      padding: 24px 25px 8px 24px;
+      align-self: stretch;
+      width: 100%;
+      flex: 0 0 auto;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .desktop-home-guest .card-title {
+      position: relative;
+      flex: 1;
+      margin-top: -1.00px;
+      font-family: "Merriweather", Helvetica;
+      font-weight: 700;
+      color: var(--baseink);
+      font-size: 22px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-home-guest .built-to-grow-alt {
+      position: relative;
+      align-self: stretch;
+      width: 100%;
+      height: 162px;
+      object-fit: cover;
+      background-color: #e0e0e0;
+    }
+
+    .desktop-home-guest .smiley-was-monstrous-wrapper {
+      display: flex;
+      gap: 10px;
+      padding: 8px 24px;
+      align-self: stretch;
+      width: 100%;
+      flex: 0 0 auto;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .desktop-home-guest .smiley-was-monstrous {
+      position: relative;
+      flex: 1;
+      margin-top: -1.00px;
+      font-family: var(--body-font-family);
+      font-weight: var(--body-font-weight);
+      color: var(--baseink);
+      font-size: var(--body-font-size);
+      letter-spacing: var(--body-letter-spacing);
+      line-height: var(--body-line-height);
+      font-style: var(--body-font-style);
+    }
+
+    .desktop-home-guest .button-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 8px 24px 24px;
+      align-self: stretch;
+      width: 100%;
+      flex: 0 0 auto;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .desktop-home-guest .button {
+      all: unset;
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      position: relative;
+      flex: 0 0 auto;
+      background-color: #005ea2;
+      border-radius: 4px;
+      overflow: hidden;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .button:hover {
+      background-color: #004a7c;
+    }
+
+    .desktop-home-guest .card-2 {
+      display: flex;
+      flex-direction: column;
+      width: 297px;
+      height: 450px;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: absolute;
+      top: 70px;
+      left: 391px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid;
+      border-color: var(--basebase-lighter);
+    }
+
+    .desktop-home-guest .card-3 {
+      display: flex;
+      flex-direction: column;
+      width: 297px;
+      height: 450px;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: absolute;
+      top: 70px;
+      left: 752px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid;
+      border-color: var(--basebase-lighter);
+    }
+
+    .desktop-home-guest .card-4 {
+      display: flex;
+      flex-direction: column;
+      width: 297px;
+      height: 450px;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: absolute;
+      top: 70px;
+      left: 1113px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid;
+      border-color: var(--basebase-lighter);
+    }
+
+    .desktop-home-guest .text-wrapper-10 {
+      position: absolute;
+      top: 29px;
+      left: 58px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-home-guest .i-s-kin-hin-th {
+      position: absolute;
+      width: 251px;
+      height: 32px;
+      top: 555px;
+      left: 594px;
+    }
+
+    .desktop-home-guest .ellipse-2 {
+      left: 0;
+      background-color: #005ea2;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: 0;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .ellipse-3 {
+      left: 73px;
+      background-color: #d9d9d9;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: 0;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .ellipse-4 {
+      left: 146px;
+      background-color: #d9d9d9;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: 0;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .ellipse-5 {
+      left: 219px;
+      background-color: #dfe1e2;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: 0;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .s-kin-nm-nay-2 {
+      top: 1429px;
+      position: absolute;
+      width: 1440px;
+      height: 600px;
+      left: 0;
+      background-color: #ffffff;
+    }
+
+    .desktop-home-guest .s-kin-nm-nay-3 {
+      top: 2057px;
+      position: absolute;
+      width: 1440px;
+      height: 600px;
+      left: 0;
+      background-color: #ffffff;
+    }
+
+    .desktop-home-guest .s-kin-tun {
+      position: absolute;
+      width: 1440px;
+      height: 600px;
+      top: 200px;
+      left: 10px;
+      background-color: #ffffff;
+    }
+
+    .desktop-home-guest .head-line {
+      position: absolute;
+      width: 1440px;
+      height: 100px;
+      top: 100px;
+      left: 3px;
+      background-color: #ffffff;
+    }
+
+    .desktop-home-guest .div-wrapper,
+    .desktop-home-guest .button-4,
+    .desktop-home-guest .button-5,
+    .desktop-home-guest .button-6 {
+      all: unset;
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      position: absolute;
+      top: 31px;
+      background-color: var(--accent-warmaccent-warm);
+      border-radius: 4px;
+      overflow: hidden;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: var(--basewhite);
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .div-wrapper {
+      left: 333px;
+    }
+
+    .desktop-home-guest .button-4 {
+      left: 50px;
+      border: 2px solid var(--accent-warmaccent-warm);
+      background-color: var(--basewhite);
+      color: var(--accent-warmaccent-warm);
+    }
+
+    .desktop-home-guest .button-5 {
+      left: 195px;
+    }
+
+    .desktop-home-guest .button-6 {
+      left: 498px;
+    }
+
+    .desktop-home-guest .header {
+      position: absolute;
+      width: 1440px;
+      height: 100px;
+      top: 0;
+      left: 0;
+      background-color: #d9d9d9;
+    }
+
+    .desktop-home-guest .text-wrapper-11 {
+      position: absolute;
+      top: 41px;
+      left: 29px;
+      font-family: var(--single-line-body-base-font-family);
+      font-weight: var(--single-line-body-base-font-weight);
+      color: #005ea2;
+      font-size: var(--single-line-body-base-font-size);
+      letter-spacing: var(--single-line-body-base-letter-spacing);
+      line-height: var(--single-line-body-base-line-height);
+      white-space: nowrap;
+      font-style: var(--single-line-body-base-font-style);
+    }
+
+    .desktop-home-guest .button-group-default {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 8px;
+      position: absolute;
+      top: 28px;
+      left: 1164px;
+    }
+
+    .desktop-home-guest .button-7 {
+      all: unset;
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      position: relative;
+      flex: 0 0 auto;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 2px solid;
+      border-color: #005ea2;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #005ea2;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .search {
+      position: absolute;
+      width: 340px;
+      height: 32px;
+      top: 34px;
+      left: 306px;
+    }
+
+    .desktop-home-guest .overlap-group {
+      position: relative;
+      height: 32px;
+    }
+
+    .desktop-home-guest .button-9,
+    .desktop-home-guest .button-11 {
+      all: unset;
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      position: absolute;
+      top: 31px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 2px solid;
+      border-color: var(--primaryprimary);
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: var(--primaryprimary);
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .desktop-home-guest .button-9 {
+      left: 702px;
+    }
+
+    .desktop-home-guest .button-11 {
+      left: 873px;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      width: 340px;
+    }
+
+    .search-container input[type="search"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      outline: none;
+      font-family: "Public Sans", Helvetica;
+      font-size: 14px;
+    }
+
+    .search-container button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+
+    .search-container button:hover {
+      background-color: #0056b3;
+    }
+
+    .search-container button i {
+      font-size: 16px;
+    }
+
+    .desktop-home-guest .account-menu {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      top: 28px;
+      left: 1164px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 4px;
+      background-color: rgba(255,255,255,0.5);
+    }
+
+    .account-menu .account-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #007bff;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .account-menu .account-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .account-menu .account-arrow {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      min-width: 200px;
+      z-index: 10;
+      margin-top: 8px;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      font-family: "Public Sans", Helvetica;
+      font-size: 14px;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .account-menu:hover .dropdown-menu {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop-home-guest">
+    <div class="div">
+      <header class="header">
+        <div class="text-wrapper-11">Ticket Booking</div>
+        
+        <!-- Version cho khách (guest) - uncomment để sử dụng -->
+        <!--
+        <div class="button-group-default">
+          <button class="button-7">Đăng nhập</button>
+          <button class="button">Đăng ký</button>
+        </div>
+        -->
+        
+        <!-- Version cho tài khoản đã đăng nhập - comment out nếu muốn hiển thị version guest -->
+        <div class="account-menu">
+          <div class="account-avatar" style="background-image: url('https://via.placeholder.com/40');"></div>
+          <div class="account-name">Tên tài khoản</div>
+          <div class="account-arrow">▼</div>
+          <div class="dropdown-menu">
+            <a href="#">Thông tin tài khoản</a>
+            <a href="#">Cài đặt</a>
+            <a href="#">Đăng xuất</a>
+          </div>
+        </div>
+        
+        <div class="search">
+          <div class="overlap-group">
+            <form class="search-container" action="/search" method="GET">
+              <input type="search" name="query" placeholder="Tìm kiếm..." required>
+              <button type="submit">
+                <i>🔍</i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <button class="button-9">Tạo sự kiện</button>
+        <button class="button-11">Vé đã mua</button>
+      </header>
+
+      <div class="head-line">
+        <button class="button-4">Phim</button>
+        <button class="div-wrapper">ca nhạc</button>
+        <button class="button-5">kịch</button>
+        <button class="button-6">thể thao</button>
+      </div>
+
+      <!-- Sự kiện tuần này -->
+      <div class="s-kin-tun">
+        <p class="text-wrapper-10">Các sự kiện trong tuần này</p>
+        
+        <div class="card">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-2">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-3">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-4">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="i-s-kin-hin-th">
+          <div class="ellipse-2"></div>
+          <div class="ellipse-3"></div>
+          <div class="ellipse-4"></div>
+          <div class="ellipse-5"></div>
+        </div>
+      </div>
+
+      <!-- Sự kiện đặc biệt trong năm -->
+      <div class="s-kin-nm-nay">
+        <p class="text-wrapper-10">Các sự kiện trong đặc biệt trong năm</p>
+        
+        <div class="card">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-2">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-3">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-4">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="i-s-kin-hin-th">
+          <div class="ellipse-2"></div>
+          <div class="ellipse-3"></div>
+          <div class="ellipse-4"></div>
+          <div class="ellipse-5"></div>
+        </div>
+      </div>
+
+      <!-- Sự kiện xu hướng -->
+      <div class="s-kin-nm-nay-2">
+        <div class="text-wrapper-10">Sự kiện xu hướng</div>
+        
+        <div class="card">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-2">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-3">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-4">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="i-s-kin-hin-th">
+          <div class="ellipse-2"></div>
+          <div class="ellipse-3"></div>
+          <div class="ellipse-4"></div>
+          <div class="ellipse-5"></div>
+        </div>
+      </div>
+
+      <!-- Sự kiện đặc biệt -->
+      <div class="s-kin-nm-nay-3">
+        <div class="text-wrapper-10">Sự kiện đặc biệt</div>
+        
+        <div class="card">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-2">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-3">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="card-4">
+          <div class="frame-2">
+            <div class="card-title-wrapper"><div class="card-title">Tên sự kiện</div></div>
+            <div class="built-to-grow-alt"></div>
+            <div class="smiley-was-monstrous-wrapper">
+              <p class="smiley-was-monstrous">
+                thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện thông tin sự kiện
+              </p>
+            </div>
+          </div>
+          <div class="button-wrapper">
+            <button class="button">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="i-s-kin-hin-th">
+          <div class="ellipse-2"></div>
+          <div class="ellipse-3"></div>
+          <div class="ellipse-4"></div>
+          <div class="ellipse-5"></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="about-us">
+          <div class="text-wrapper-6">Về chúng tôi</div>
+          <div class="text-wrapper-7">Chính sách</div>
+          <div class="text-wrapper-8">Quy chế</div>
+          <div class="text-wrapper-9">Phương thức thanh toán</div>
+        </div>
+
+        <div class="doc">
+          <div class="text-wrapper-4">Tài liệu</div>
+          <p class="text-wrapper-5">Điều khoản sử dụng cho ban tổ chức</p>
+          <p class="p">Điều khoản sử dụng khách hàng</p>
+        </div>
+
+        <div class="thng-tin-lin-lc">
+          <div class="agency">
+            <div class="ellipse"></div>
+            <div class="text-wrapper">Ticket Booking</div>
+          </div>
+          <div class="contact">
+            <div class="socials">
+              <div class="icon-wrapper"><div class="icon"></div></div>
+              <div class="icon-wrapper"><div class="icon"></div></div>
+              <div class="icon-wrapper"><div class="icon"></div></div>
+              <div class="icon-wrapper"><div class="icon"></div></div>
+              <div class="icon-wrapper"><div class="icon"></div></div>
+            </div>
+            <div class="agency-contact">
+              <div class="text-wrapper-2">Follow us</div>
+              <div class="group">
+                <div class="frame">
+                  <div class="text-wrapper-3">(08) 9453654</div>
+                  <div class="text-wrapper-3">infoticket@gmail.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

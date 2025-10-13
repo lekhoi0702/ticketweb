@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Booking - Tạo sự kiện</title>
+  <style>
+    /* globals.css */
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+    * {
+      -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      margin: 0px;
+      height: 100%;
+    }
+    button:focus-visible {
+      outline: 2px solid #4a90e2 !important;
+      outline: -webkit-focus-ring-color auto 5px !important;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /* styleguide.css */
+    :root {
+      --baseink: rgba(27, 27, 27, 1);
+      --accent-color: rgba(23, 25, 33, 1);
+      --grayscalegray-10: rgba(230, 230, 230, 1);
+      --h3-font-family: "Public Sans", Helvetica;
+      --h3-font-weight: 700;
+      --h3-font-size: 22px;
+      --h3-letter-spacing: 0px;
+      --h3-line-height: normal;
+      --h3-font-style: normal;
+      --body-font-family: "Public Sans", Helvetica;
+      --body-font-weight: 400;
+      --body-font-size: 16px;
+      --body-letter-spacing: 0px;
+      --body-line-height: 150%;
+      --body-font-style: normal;
+      --single-line-body-base-font-family: "Inter", Helvetica;
+      --single-line-body-base-font-weight: 400;
+      --single-line-body-base-font-size: 16px;
+      --single-line-body-base-letter-spacing: 0px;
+      --single-line-body-base-line-height: 100%;
+      --single-line-body-base-font-style: normal;
+    }
+
+    /* style.css */
+    .desktop-create-event {
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .desktop-create-event .div {
+      background-color: #ffffff;
+      width: 1440px;
+      height: 2048px;
+      position: relative;
+    }
+
+    .desktop-create-event .footer {
+      position: absolute;
+      width: 1440px;
+      height: 648px;
+      top: 1400px;
+      left: 0;
+      background-color: #565c65;
+    }
+
+    .desktop-create-event .thng-tin-lin-lc {
+      display: flex;
+      width: 1440px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      position: absolute;
+      top: 493px;
+      left: 0;
+      background-color: var(--grayscalegray-10);
+    }
+
+    .desktop-create-event .agency {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .desktop-create-event .ellipse {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .desktop-create-event .text-wrapper {
+      position: relative;
+      width: fit-content;
+      font-family: var(--h3-font-family);
+      font-weight: var(--h3-font-weight);
+      color: var(--baseink);
+      font-size: var(--h3-font-size);
+      letter-spacing: var(--h3-letter-spacing);
+      line-height: var(--h3-line-height);
+      white-space: nowrap;
+      font-style: var(--h3-font-style);
+    }
+
+    .desktop-create-event .contact {
+      position: relative;
+      width: 297px;
+      height: 114px;
+    }
+
+    .desktop-create-event .socials {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 8px;
+      position: absolute;
+      top: 0;
+      left: 25px;
+    }
+
+    .desktop-create-event .icon-wrapper {
+      display: inline-flex;
+      align-items: flex-start;
+      padding: 4px;
+      position: relative;
+      flex: 0 0 auto;
+      background-color: #0000001a;
+    }
+
+    .desktop-create-event .icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+    }
+
+    .desktop-create-event .agency-contact {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+    }
+
+    .desktop-create-event .text-wrapper-2 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1.00px;
+      font-family: var(--h3-font-family);
+      font-weight: var(--h3-font-weight);
+      color: var(--baseink);
+      font-size: var(--h3-font-size);
+      letter-spacing: var(--h3-letter-spacing);
+      line-height: var(--h3-line-height);
+      white-space: nowrap;
+      font-style: var(--h3-font-style);
+    }
+
+    .desktop-create-event .group {
+      position: relative;
+      width: 297px;
+      height: 24px;
+    }
+
+    .desktop-create-event .frame {
+      display: inline-flex;
+      gap: 32px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .desktop-create-event .text-wrapper-3 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1.00px;
+      font-family: "Public Sans-Regular", Helvetica;
+      font-weight: 400;
+      color: var(--baseink);
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .doc {
+      position: absolute;
+      width: 280px;
+      height: 124px;
+      top: 50px;
+      left: 350px;
+    }
+
+    .desktop-create-event .text-wrapper-4 {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 20px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .p {
+      position: absolute;
+      top: 110px;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .text-wrapper-5 {
+      position: absolute;
+      top: 55px;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .about-us {
+      position: absolute;
+      width: 193px;
+      height: 185px;
+      top: 50px;
+      left: 10px;
+    }
+
+    .desktop-create-event .text-wrapper-6 {
+      position: absolute;
+      width: 200px;
+      top: 0;
+      left: 20px;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 20px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 20.0px;
+    }
+
+    .desktop-create-event .text-wrapper-7 {
+      position: absolute;
+      width: 200px;
+      top: 55px;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-create-event .text-wrapper-8 {
+      position: absolute;
+      width: 200px;
+      top: 111px;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-create-event .text-wrapper-9 {
+      position: absolute;
+      width: 200px;
+      top: 166px;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-create-event .header {
+      position: absolute;
+      width: 1440px;
+      height: 100px;
+      top: 0;
+      left: 0;
+      background-color: #d9d9d9;
+    }
+
+    .desktop-create-event .text-wrapper-10 {
+      position: absolute;
+      top: 41px;
+      left: 29px;
+      font-family: var(--single-line-body-base-font-family);
+      font-weight: var(--single-line-body-base-font-weight);
+      color: #005ea2;
+      font-size: var(--single-line-body-base-font-size);
+      letter-spacing: var(--single-line-body-base-letter-spacing);
+      line-height: var(--single-line-body-base-line-height);
+      white-space: nowrap;
+      font-style: var(--single-line-body-base-font-style);
+    }
+
+    .desktop-create-event .account {
+      position: absolute;
+      width: 217px;
+      height: 75px;
+      top: 12px;
+      left: 1117px;
+    }
+
+    .desktop-create-event .text-wrapper-11 {
+      top: 31px;
+      left: 98px;
+      color: #005ea2;
+      font-size: 16px;
+      line-height: 14.4px;
+      position: absolute;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .ellipse-2 {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      top: 0;
+      left: 0;
+      background-color: #565c65;
+      border-radius: 37.5px;
+    }
+
+    .desktop-create-event .account-arrow {
+      font-size: 14px;
+      color: #333;
+      top: 31px;
+      left: 200px;
+      position: absolute;
+    }
+
+    .desktop-create-event .dropdown-menu {
+      display: none; 
+      position: absolute;
+      top: 45px; 
+      left: 200px;
+      width: 100px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    .desktop-create-event .dropdown-menu a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .desktop-create-event .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .desktop-create-event .account:hover .dropdown-menu {
+      display: block;
+    }
+
+    .desktop-create-event .text-wrapper-12 {
+      position: absolute;
+      top: 33px;
+      left: 304px;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 36px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 32.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .left-side {
+      position: absolute;
+      width: 300px;
+      height: 1300px;
+      top: 100px;
+      left: 0;
+      background-color: #14ae5c;
+    }
+
+    .desktop-create-event .to-s-kin {
+      position: absolute;
+      width: 145px;
+      height: 24px;
+      top: 60px;
+      left: 60px;
+    }
+
+    .desktop-create-event .icon-2 {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 0;
+      left: 119px;
+    }
+
+    .desktop-create-event .text-wrapper-13 {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #374957;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .event {
+      position: absolute;
+      width: 164px;
+      height: 24px;
+      top: 140px;
+      left: 60px;
+    }
+
+    .desktop-create-event .text-wrapper-14 {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .icon-3 {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 0;
+      left: 138px;
+    }
+
+    .desktop-create-event .right-side {
+      position: absolute;
+      width: 1140px;
+      height: 1300px;
+      top: 100px;
+      left: 300px;
+      background-color: #aff4c6;
+    }
+
+    .desktop-create-event .request-type {
+      position: absolute;
+      width: 1140px;
+      height: 80px;
+      top: 0;
+      left: 0;
+      background-color: #1e1e1e;
+    }
+
+    .desktop-create-event .overlap-group-wrapper {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 68px;
+    }
+
+    .desktop-create-event .overlap-group {
+      position: relative;
+      width: 200px;
+      height: 50px;
+      background-color: #d9d9d9;
+    }
+
+    .desktop-create-event .overlap-group:hover {
+      position: relative;
+      width: 200px;
+      height: 50px;
+      background-color: #73de93;
+      cursor: pointer;
+    }
+
+    .desktop-create-event .text-wrapper-15 {
+      position: absolute;
+      width: 96px;
+      top: 13px;
+      left: 52px;
+      font-family: "Inter-Regular", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-create-event .overlap-wrapper {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 604px;
+    }
+
+    .desktop-create-event .text-wrapper-16 {
+      position: absolute;
+      width: 141px;
+      top: 13px;
+      left: 29px;
+      font-family: "Inter-Regular", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-create-event .div-wrapper {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 872px;
+    }
+
+    .desktop-create-event .text-wrapper-17 {
+      position: absolute;
+      width: 78px;
+      top: 13px;
+      left: 61px;
+      font-family: "Inter-Regular", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-create-event .group-2 {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 336px;
+    }
+
+    .desktop-create-event .overlap {
+      position: relative;
+      width: 200px;
+      height: 50px;
+      background-color: #14ae5c;
+      cursor: pointer;
+    }
+
+    .desktop-create-event .text-wrapper-18 {
+      position: absolute;
+      top: 13px;
+      left: 58px;
+      font-family: "Inter-Regular", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .next-page {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 19px 60px;
+      position: absolute;
+      top: 1202px;
+      left: 875px;
+      background-color: var(--accent-color);
+      border-radius: 33px;
+      border: 1px solid;
+      border-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .desktop-create-event .text-wrapper-19 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1.00px;
+      font-family: "Inter-Bold", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 23px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-create-event .logo-poster {
+      position: absolute;
+      width: 700px;
+      height: 250px;
+      top: 218px;
+      left: 96px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .desktop-create-event .text-area {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      height: 40px;
+      font-family: "Spartan-Bold", Helvetica;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .desktop-create-event .text-input-label {
+      position: relative;
+      align-self: stretch;
+      margin-top: -1.00px;
+      font-family: "Spartan-Bold", Helvetica;
+      font-weight: 700;
+      color: var(--baseink);
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .overlap-2 {
+      display: flex;
+      justify-content: space-between;
+      height: 210px;
+    }
+
+    .input-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    #poster-container {
+      width: 210px;
+      height: 210px;
+    }
+
+    #background-container {
+      flex: 1;
+      margin-left: 10px;
+    }
+
+    .preview {
+      width: 100%;
+      height: 100%;
+      border: 2px dashed #ccc;
+      background-color: #fff;
+      background-size: cover;
+      background-position: center;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .placeholder {
+      font-family: "Spartan-Bold", Helvetica;
+      font-weight: 700;
+      color: #ccc;
+      text-align: center;
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .remove-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .remove-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .desktop-create-event .text-wrapper-22 {
+      position: absolute;
+      top: 150px;
+      left: 96px;
+      font-family: "Spartan-Bold", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .group-3 {
+      position: absolute;
+      width: 712px;
+      height: 313px;
+      top: 540px;
+      left: 96px;
+    }
+
+    .desktop-create-event .text-wrapper-23 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-family: "Public Sans-Bold", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: 21px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .overlap-3 {
+      position: absolute;
+      width: 708px;
+      height: 279px;
+      top: 34px;
+      left: 0;
+      background-color: #ffffff;
+    }
+
+    #seatmap-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+    }
+
+    .desktop-create-event .text-wrapper-24 {
+      top: 131px;
+      left: 314px;
+      position: absolute;
+      font-family: "Spartan-Bold", Helvetica;
+      font-weight: 700;
+      color: #565c65;
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .line-2 {
+      width: 831px;
+      height: 1px;
+      top: 465px;
+      left: 93px;
+      position: absolute;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop-create-event">
+    <div class="div">
+      <footer class="footer">
+        <div class="thng-tin-lin-lc">
+          <div class="agency">
+            <img class="ellipse"/>
+            <div class="text-wrapper">Ticket Booking</div>
+          </div>
+          <div class="contact">
+            <div class="socials">
+              <div class="icon-wrapper"><img class="icon" src="img/facebook.png" /></div>
+              <div class="icon-wrapper"><img class="icon" src="img/twitter.png" /></div>
+              <div class="icon-wrapper"><img class="icon" src="img/youtube.png" /></div>
+              <div class="icon-wrapper"><img class="icon" src="img/instagram.png" /></div>
+              <div class="icon-wrapper"><img class="icon" src="img/rss.png" /></div>
+            </div>
+            <div class="agency-contact">
+              <div class="text-wrapper-2">Follow us</div>
+              <div class="group">
+                <div class="frame">
+                  <div class="text-wrapper-3">(08) 9453654</div>
+                  <div class="text-wrapper-3">infoticket@gmail.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="doc">
+          <div class="text-wrapper-4">Tài liệu</div>
+          <p class="p">Điều khoản sử dụng khách hàng</p>
+          <p class="text-wrapper-5">Điều khoản sử dụng cho ban tổ chức</p>
+        </div>
+        <div class="about-us">
+          <div class="text-wrapper-6">Về chúng tôi</div>
+          <div class="text-wrapper-7">Chính sách</div>
+          <div class="text-wrapper-8">Quy chế</div>
+          <div class="text-wrapper-9">Phương thức thanh toán</div>
+        </div>
+      </footer>
+      <header class="header">
+        <div class="text-wrapper-10">Ticket Booking</div>
+        <div class="account">
+          <div class="text-wrapper-11">Tài khoản</div>
+          <div class="ellipse-2"></div>
+          <div class="account-arrow">▼</div>
+          <div class="dropdown-menu">
+            <a href="#">Thông tin tài khoản</a>
+            <a href="#">Cài đặt</a>
+            <a href="#">Đăng xuất</a>
+          </div>
+        </div>
+        <div class="text-wrapper-12">Tạo sự kiện</div>
+      </header>
+      <div class="left-side">
+        <div class="to-s-kin">
+          <img class="icon-2" src="img/icon-1.png" />
+          <div class="text-wrapper-13">Tạo sự kiện</div>
+        </div>
+        <div class="event">
+          <div class="text-wrapper-14">Sự kiện đã tạo</div>
+          <img class="icon-3" src="img/icon-2.png" />
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="request-type">
+          <div class="overlap-group-wrapper">
+            <div class="overlap-group"><div class="text-wrapper-15">Thông tin</div></div>
+          </div>
+          <div class="overlap-wrapper">
+            <div class="overlap-group"><div class="text-wrapper-16">Vé và thời gian</div></div>
+          </div>
+          <div class="div-wrapper">
+            <div class="overlap-group"><div class="text-wrapper-17">Cài đặt</div></div>
+          </div>
+          <div class="group-2">
+            <div class="overlap"><div class="text-wrapper-18">Hình ảnh</div></div>
+          </div>
+        </div>
+        <div class="next-page"><div class="text-wrapper-19">Next Page</div></div>
+        <div class="logo-poster">
+          <div class="text-area">
+            <p class="text-input-label">Thêm hình nền &amp; poster</p>
+          </div>
+          <div class="overlap-2">
+            <div class="input-container" id="poster-container">
+              <label for="upload-poster" class="preview" id="preview-poster">
+                <span class="placeholder">Thêm poster</span>
+                <button type="button" class="remove-button" id="remove-poster" style="display: none;">&times;</button>
+              </label>
+              <input type="file" id="upload-poster" accept="image/*" class="file-input" />
+            </div>
+            
+            <div class="input-container" id="background-container">
+              <label for="upload-background" class="preview" id="preview-background">
+                <span class="placeholder">Thêm hình nền</span>
+                <button type="button" class="remove-button" id="remove-background" style="display: none;">&times;</button>
+              </label>
+              <input type="file" id="upload-background" accept="image/*" class="file-input" />
+            </div>
+          </div>
+        </div>                    
+        <p class="text-wrapper-22">Hình ảnh sẽ được sử dụng hiển thị trên trang</p>
+        <div class="group-3">
+          <div class="text-wrapper-23">SEAT MAP</div>
+          <div class="overlap-3">
+            <div class="input-container" id="seatmap-container">
+              <label for="upload-seatmap" class="preview" id="preview-seatmap">
+                <span class="placeholder">Thêm SEATMAP</span>
+                <button type="button" class="remove-button" id="remove-seatmap" style="display: none;">&times;</button>
+              </label>
+              <input type="file" id="upload-seatmap" accept="image/*" class="file-input" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="api.js"></script>
+<script src="page2-script.js"></script>
+</body>
+</html>
