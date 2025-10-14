@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="057a8ee0-1ae3-4728-965a-c7f3bd08f7be" name="Changes" comment="firstCommit" />
+    <list default="true" id="057a8ee0-1ae3-4728-965a-c7f3bd08f7be" name="Changes" comment="firstCommit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/core/api/serializer/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/core/api/serializer/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/core/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/core/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/core/api/views/auth_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/core/api/views/event_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/core/api/views/event_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/core/api/views/ticket_type_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/core/api/views/ticket_type_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapi/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +45,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "webapi__branch",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -99,6 +107,7 @@
       <workItem from="1759936955436" duration="25000" />
       <workItem from="1760013251435" duration="4834000" />
       <workItem from="1760360495275" duration="3327000" />
+      <workItem from="1760449115548" duration="5469000" />
     </task>
     <servers />
   </component>

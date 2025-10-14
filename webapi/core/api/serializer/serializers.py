@@ -7,6 +7,7 @@ from webapi.core.models.order_item import OrderItem
 from webapi.core.models.promotion import Promotion
 from webapi.core.models.ticket import Ticket
 from webapi.core.models.ticket_type import TicketType
+from webapi.core.models.user import User
 
 
 class OrderItemSerializer(serializers.Serializer):
@@ -39,6 +40,16 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+        read_only_fields = ('id', 'created_at', 'organizer')
+
+    def validate(self, attrs):
+        start = attrs.get('start_time') or getattr(self.instance, 'start_time', None)
+        end = attrs.get('end_time') or getattr(self.instance, 'end_time', None)
+        if start and end and end <= start:
+            raise serializers.ValidationError({
+                'end_time': 'end_time must be after start_time'
+            })
+        return attrs
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,6 +59,24 @@ class TicketSerializer(serializers.ModelSerializer):
 class TicketTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = TicketType
+        fields = '__all__'
+
+
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ('id', 'username', 'role', 'status', 'created_at')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'account_id', 'fullname', 'email', 'phone', 'birthday', 'gender', 'address', 'created_at')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
         fields = '__all__'
 class PromotionSerializer(serializers.ModelSerializer):
     class Meta:
