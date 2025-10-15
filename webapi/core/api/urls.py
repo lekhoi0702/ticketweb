@@ -9,6 +9,8 @@ from webapi.core.api.views.account_view import AccountViewSet
 from webapi.core.api.views.user_view import UserViewSet
 from webapi.core.api.views.order_viewset import OrderViewSet
 from webapi.core.api.views.ticket_view import TicketViewSet
+from webapi.core.api.views.auth_view import LoginView
+from webapi.core.api.views.promotion_view import PromotionViewSet
 
 
 
@@ -21,11 +23,13 @@ router.register(r'ticket-types', TicketTypeViewSet),
 router.register(r'accounts', AccountViewSet),
 router.register(r'users', UserViewSet),
 router.register(r'orders', OrderViewSet),
+router.register(r'promotions', PromotionViewSet),
 urlpatterns = [
 
 
     path('', include(router.urls)),
 
+    path('auth/login/', LoginView.as_view()),
     path('orders/create/', CreateOrderView.as_view()),
     path('orders/<int:order_id>/process_payment/', ProcessPaymentView.as_view()),
     path('orders/<int:order_id>/cancel/', CancelOrderView.as_view()),

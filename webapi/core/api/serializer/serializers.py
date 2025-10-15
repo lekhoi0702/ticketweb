@@ -78,6 +78,20 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
+class OrderItemModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ('ticket_type_id', 'quantity', 'price', 'subtotal')
+
+class OrderWithItemsSerializer(serializers.ModelSerializer):
+    items = OrderItemModelSerializer(source='orderitem_set', many=True, read_only=True)
+    user = serializers.IntegerField(source='user_id', read_only=True)
+    event = serializers.IntegerField(source='event_id', read_only=True)
+    promotion = serializers.IntegerField(source='promotion_id', read_only=True)
+    class Meta:
+        model = Order
+        fields = '__all__'
+        depth = 0
 class PromotionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Promotion

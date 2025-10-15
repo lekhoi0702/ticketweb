@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vé và Thời Gian - Ticket Booking</title>
+  <style>
+    /* Reset CSS */
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+    
+    * {
+      -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      margin: 0px;
+      height: 100%;
+    }
+    
+    button:focus-visible {
+      outline: 2px solid #4a90e2 !important;
+      outline: -webkit-focus-ring-color auto 5px !important;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+
+    /* Variables */
+    :root {
+      --baseink: rgba(27, 27, 27, 1);
+      --gray-tailwind800: rgba(31, 41, 55, 1);
+      --gray-tailwind600: rgba(75, 85, 99, 1);
+      --accent-color: rgba(23, 25, 33, 1);
+      --basebase-lightest: rgba(240, 240, 240, 1);
+      --basebase-darkest: rgba(61, 69, 81, 1);
+      --grayscalegray-10: rgba(230, 230, 230, 1);
+      --h3-font-family: "Public Sans", Helvetica;
+      --h3-font-weight: 700;
+      --h3-font-size: 22px;
+      --h3-letter-spacing: 0px;
+      --h3-line-height: normal;
+      --h3-font-style: normal;
+      --body-font-family: "Public Sans", Helvetica;
+      --body-font-weight: 400;
+      --body-font-size: 16px;
+      --body-letter-spacing: 0px;
+      --body-line-height: 162%;
+      --body-font-style: normal;
+      --paragraph-2-regular-font-family: "Poppins", Helvetica;
+      --paragraph-2-regular-font-weight: 400;
+      --paragraph-2-regular-font-size: 16px;
+      --paragraph-2-regular-letter-spacing: 0px;
+      --paragraph-2-regular-line-height: 24px;
+      --paragraph-2-regular-font-style: normal;
+      --paragraph-3-regular-font-family: "Poppins", Helvetica;
+      --paragraph-3-regular-font-weight: 400;
+      --paragraph-3-regular-font-size: 14px;
+      --paragraph-3-regular-letter-spacing: 0px;
+      --paragraph-3-regular-line-height: 20px;
+      --paragraph-3-regular-font-style: normal;
+      --h4-font-family: "Public Sans", Helvetica;
+      --h4-font-weight: 700;
+      --h4-font-size: 16px;
+      --h4-letter-spacing: 0px;
+      --h4-line-height: normal;
+      --h4-font-style: normal;
+    }
+
+    /* Main Container */
+    .desktop-create-event {
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .desktop-create-event .div {
+      background-color: #ffffff;
+      width: 1440px;
+      height: 2048px;
+      position: relative;
+    }
+
+    /* Header */
+    .desktop-create-event .header {
+      position: absolute;
+      width: 1440px;
+      height: 100px;
+      top: 0;
+      left: 0;
+      background-color: #d9d9d9;
+    }
+
+    .desktop-create-event .text-wrapper-10 {
+      position: absolute;
+      top: 41px;
+      left: 29px;
+      font-family: "Inter", Helvetica;
+      font-weight: 400;
+      color: #005ea2;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 16px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .account {
+      position: absolute;
+      width: 217px;
+      height: 75px;
+      top: 12px;
+      left: 1117px;
+    }
+
+    .desktop-create-event .text-wrapper-11 {
+      top: 31px;
+      left: 98px;
+      color: #005ea2;
+      font-size: 16px;
+      line-height: 14.4px;
+      position: absolute;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .ellipse-2 {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      top: 0;
+      left: 0;
+      background-color: #565c65;
+      border-radius: 37.5px;
+    }
+
+    .desktop-create-event .account-arrow {
+      font-size: 14px;
+      color: #333;
+      top: 31px;
+      left: 200px;
+      position: absolute;
+    }
+
+    .desktop-create-event .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 45px;
+      left: 200px;
+      width: 100px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    .desktop-create-event .dropdown-menu a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .desktop-create-event .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .desktop-create-event .account:hover .dropdown-menu {
+      display: block;
+    }
+
+    .desktop-create-event .text-wrapper-12 {
+      position: absolute;
+      top: 33px;
+      left: 304px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 36px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 32.4px;
+      white-space: nowrap;
+    }
+
+    /* Left Sidebar */
+    .desktop-create-event .left-side {
+      position: absolute;
+      width: 300px;
+      height: 1300px;
+      top: 100px;
+      left: 0;
+      background-color: #14ae5c;
+    }
+
+    .desktop-create-event .to-s-kin {
+      position: absolute;
+      width: 145px;
+      height: 24px;
+      top: 60px;
+      left: 60px;
+    }
+
+    .desktop-create-event .icon-2 {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 0;
+      left: 119px;
+    }
+
+    .desktop-create-event .text-wrapper-13 {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #374957;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .event {
+      position: absolute;
+      width: 164px;
+      height: 24px;
+      top: 140px;
+      left: 60px;
+    }
+
+    .desktop-create-event .text-wrapper-14 {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .icon-3 {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 0;
+      left: 138px;
+    }
+
+    /* Right Side Content */
+    .desktop-create-event .right-side {
+      position: absolute;
+      width: 1140px;
+      height: 1300px;
+      top: 100px;
+      left: 300px;
+      background-color: #aff4c6;
+    }
+
+    /* Navigation Tabs */
+    .desktop-create-event .request-type {
+      position: absolute;
+      width: 1140px;
+      height: 80px;
+      top: 0;
+      left: 0;
+      background-color: #1e1e1e;
+    }
+
+    .desktop-create-event .overlap-group-wrapper {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 68px;
+    }
+
+    .desktop-create-event .overlap-group-2 {
+      position: relative;
+      width: 200px;
+      height: 50px;
+      background-color: #d9d9d9;
+      cursor: pointer;
+    }
+
+    .desktop-create-event .overlap-group-2:hover {
+      background-color: #73de93;
+    }
+
+    .desktop-create-event .text-wrapper-26 {
+      position: absolute;
+      width: 96px;
+      top: 13px;
+      left: 52px;
+      font-family: "Inter", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-create-event .group-3 {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 336px;
+    }
+
+    .desktop-create-event .text-wrapper-29 {
+      position: absolute;
+      top: 13px;
+      left: 58px;
+      font-family: "Inter", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .overlap-wrapper {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 604px;
+    }
+
+    .desktop-create-event .overlap-2 {
+      position: relative;
+      width: 200px;
+      height: 50px;
+      background-color: #14ae5c;
+      cursor: pointer;
+    }
+
+    .desktop-create-event .text-wrapper-27 {
+      position: absolute;
+      width: 141px;
+      top: 13px;
+      left: 29px;
+      font-family: "Inter", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-create-event .group-2 {
+      position: absolute;
+      width: 202px;
+      height: 50px;
+      top: 15px;
+      left: 872px;
+    }
+
+    .desktop-create-event .text-wrapper-28 {
+      position: absolute;
+      width: 78px;
+      top: 13px;
+      left: 61px;
+      font-family: "Inter", Helvetica;
+      font-weight: 400;
+      color: #000000;
+      font-size: 20px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    /* Ticket Section Title */
+    .desktop-create-event .text-wrapper-22 {
+      position: absolute;
+      top: 177px;
+      left: 70px;
+      font-family: var(--paragraph-3-regular-font-family);
+      font-weight: var(--paragraph-3-regular-font-weight);
+      color: #000000;
+      font-size: var(--paragraph-3-regular-font-size);
+      letter-spacing: var(--paragraph-3-regular-letter-spacing);
+      line-height: var(--paragraph-3-regular-line-height);
+      white-space: nowrap;
+      font-style: var(--paragraph-3-regular-font-style);
+    }
+
+    /* Ticket Table */
+    .desktop-create-event .table {
+      position: absolute;
+      width: 598px;
+      height: 247px;
+      top: 256px;
+      left: 51px;
+    }
+
+    .desktop-create-event .overlap {
+      position: relative;
+      height: 247px;
+    }
+
+    .desktop-create-event .th-first {
+      display: flex;
+      width: 163px;
+      align-items: flex-start;
+      padding: 12px 16px 11px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: var(--basebase-lightest);
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .text-wrapper-24 {
+      position: relative;
+      flex: 1;
+      margin-top: -1px;
+      font-family: var(--h4-font-family);
+      font-weight: var(--h4-font-weight);
+      color: var(--baseink);
+      font-size: var(--h4-font-size);
+      letter-spacing: var(--h4-letter-spacing);
+      line-height: var(--h4-line-height);
+      font-style: var(--h4-font-style);
+    }
+
+    .desktop-create-event .td-first {
+      display: flex;
+      width: 163px;
+      align-items: flex-start;
+      padding: 8px 16px;
+      position: absolute;
+      top: 41px;
+      left: 0;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .text-wrapper-25 {
+      position: relative;
+      flex: 1;
+      margin-top: -1px;
+      font-family: var(--body-font-family);
+      font-weight: var(--body-font-weight);
+      color: var(--baseink);
+      font-size: var(--body-font-size);
+      letter-spacing: var(--body-letter-spacing);
+      line-height: var(--body-line-height);
+      font-style: var(--body-font-style);
+    }
+
+    .desktop-create-event .project-name-wrapper {
+      top: 82px;
+      background-color: var(--basebase-lightest);
+      display: flex;
+      width: 163px;
+      align-items: flex-start;
+      padding: 8px 16px;
+      position: absolute;
+      left: 0;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-first-2 {
+      top: 123px;
+      display: flex;
+      width: 163px;
+      align-items: flex-start;
+      padding: 8px 16px;
+      position: absolute;
+      left: 0;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-first-3 {
+      top: 164px;
+      background-color: var(--basebase-lightest);
+      display: flex;
+      width: 163px;
+      align-items: flex-start;
+      padding: 8px 16px;
+      position: absolute;
+      left: 0;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-first-4 {
+      top: 205px;
+      display: flex;
+      width: 163px;
+      align-items: flex-start;
+      padding: 8px 16px;
+      position: absolute;
+      left: 0;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .th {
+      display: flex;
+      width: 334px;
+      align-items: flex-start;
+      padding: 12px 16px 11px;
+      position: absolute;
+      top: 0;
+      left: 162px;
+      background-color: var(--basebase-lightest);
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .th-2 {
+      display: flex;
+      width: 103px;
+      align-items: flex-start;
+      padding: 12px 16px 11px;
+      position: absolute;
+      top: 0;
+      left: 495px;
+      background-color: var(--basebase-lightest);
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td {
+      display: flex;
+      width: 334px;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      top: 41px;
+      left: 162px;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-2 {
+      width: 103px;
+      top: 41px;
+      left: 495px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-3 {
+      width: 103px;
+      top: 82px;
+      left: 495px;
+      background-color: var(--basebase-lightest);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-4 {
+      width: 103px;
+      top: 123px;
+      left: 495px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-5 {
+      width: 103px;
+      top: 164px;
+      left: 495px;
+      background-color: var(--basebase-lightest);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-6 {
+      width: 103px;
+      top: 205px;
+      left: 495px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-7 {
+      width: 334px;
+      top: 82px;
+      left: 162px;
+      background-color: var(--basebase-lightest);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-8 {
+      width: 334px;
+      top: 123px;
+      left: 162px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-9 {
+      width: 334px;
+      top: 164px;
+      left: 162px;
+      background-color: var(--basebase-lightest);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    .desktop-create-event .td-10 {
+      width: 334px;
+      top: 205px;
+      left: 162px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 16px;
+      position: absolute;
+      border: 1px solid;
+      border-color: var(--basebase-darkest);
+    }
+
+    /* Divider Line */
+    .desktop-create-event .line-3 {
+      position: absolute;
+      width: 818px;
+      top: 634px;
+      left: 42px;
+      height: 1px;
+      background-color: #ccc;
+    }
+
+    /* Form Section */
+    .desktop-create-event .frame-2 {
+      display: flex;
+      flex-direction: column;
+      width: 500px;
+      gap: 24px;
+      position: absolute;
+      top: 702px;
+      left: 70px;
+      box-sizing: border-box;
+    }
+
+    .desktop-create-event .frame-3,
+    .desktop-create-event .frame-4,
+    .desktop-create-event .frame-5 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 20px;
+      box-sizing: border-box;
+    }
+
+    .input-text,
+    .input-number,
+    .input-datetime {
+      flex: 1;
+      max-width: 300px;
+      height: 30px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: "Public Sans", Helvetica;
+      font-size: 14px;
+      color: #333;
+      box-sizing: border-box;
+    }
+
+    .input-text::placeholder,
+    .input-number::placeholder {
+      color: #aaa;
+    }
+
+    .input-text:focus,
+    .input-number:focus,
+    .input-datetime:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .text-wrapper-16,
+    .text-wrapper-18 {
+      flex: 0 0 auto;
+      font-family: var(--paragraph-2-regular-font-family);
+      font-size: var(--paragraph-2-regular-font-size);
+      font-weight: var(--paragraph-2-regular-font-weight);
+      color: var(--gray-tailwind800);
+    }
+
+    /* Text Area for Ticket Info */
+    .desktop-create-event .text-area {
+      display: flex;
+      flex-direction: column;
+      width: 450px;
+      height: 184px;
+      align-items: flex-start;
+      gap: 8px;
+      position: absolute;
+      top: 702px;
+      left: 598px;
+    }
+
+    .desktop-create-event .text-input-label {
+      position: relative;
+      align-self: stretch;
+      margin-top: -1px;
+      font-family: "Spartan", Helvetica;
+      font-weight: 700;
+      color: #1b1b1b;
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    .desktop-create-event .frame-6 {
+      position: relative;
+      align-self: stretch;
+      width: 100%;
+      height: 160px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .editor {
+      padding: 10px;
+      font-size: 16px;
+      line-height: 1.5;
+      outline: none;
+      background-color: #fff;
+      overflow-y: auto;
+      height: 150px;
+    }
+
+    /* Add Ticket Button */
+    .desktop-create-event .button {
+      all: unset;
+      box-sizing: border-box;
+      position: absolute;
+      width: 162px;
+      height: 58px;
+      top: 1000px;
+      left: 382px;
+      cursor: pointer;
+    }
+
+    .desktop-create-event .overlap-group {
+      position: relative;
+      width: 160px;
+      height: 58px;
+      background-color: #d9d9d9;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .desktop-create-event .overlap-group:hover {
+      background-color: #c0c0c0;
+    }
+
+    .desktop-create-event .icon-4 {
+      position: absolute;
+      right: 20px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .desktop-create-event .text-wrapper-23 {
+      position: absolute;
+      left: 23px;
+      font-family: "Spartan", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+    }
+
+    /* Next Page Button */
+    .desktop-create-event .next-page {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 19px 60px;
+      position: absolute;
+      top: 1202px;
+      left: 875px;
+      background-color: var(--accent-color);
+      border-radius: 33px;
+      border: 1px solid;
+      border-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .desktop-create-event .next-page:hover {
+      background-color: #14ae5c;
+    }
+
+    .desktop-create-event .text-wrapper-15 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1px;
+      font-family: "Inter", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 23px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+
+    /* Footer */
+    .desktop-create-event .footer {
+      position: absolute;
+      width: 1440px;
+      height: 648px;
+      top: 1400px;
+      left: 0;
+      background-color: #565c65;
+    }
+
+    .desktop-create-event .thng-tin-lin-lc {
+      display: flex;
+      width: 1440px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      position: absolute;
+      top: 493px;
+      left: 0;
+      background-color: var(--grayscalegray-10);
+    }
+
+    .desktop-create-event .agency {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .desktop-create-event .ellipse {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .desktop-create-event .text-wrapper {
+      position: relative;
+      width: fit-content;
+      font-family: var(--h3-font-family);
+      font-weight: var(--h3-font-weight);
+      color: var(--baseink);
+      font-size: var(--h3-font-size);
+      letter-spacing: var(--h3-letter-spacing);
+      line-height: var(--h3-line-height);
+      white-space: nowrap;
+      font-style: var(--h3-font-style);
+    }
+
+    .desktop-create-event .contact {
+      position: relative;
+      width: 297px;
+      height: 114px;
+    }
+
+    .desktop-create-event .socials {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 8px;
+      position: absolute;
+      top: 0;
+      left: 25px;
+    }
+
+    .desktop-create-event .icon-wrapper {
+      display: inline-flex;
+      align-items: flex-start;
+      padding: 4px;
+      position: relative;
+      flex: 0 0 auto;
+      background-color: #0000001a;
+    }
+
+    .desktop-create-event .icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+    }
+
+    .desktop-create-event .agency-contact {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+    }
+
+    .desktop-create-event .text-wrapper-2 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1px;
+      font-family: var(--h3-font-family);
+      font-weight: var(--h3-font-weight);
+      color: var(--baseink);
+      font-size: var(--h3-font-size);
+      letter-spacing: var(--h3-letter-spacing);
+      line-height: var(--h3-line-height);
+      white-space: nowrap;
+      font-style: var(--h3-font-style);
+    }
+
+    .desktop-create-event .group {
+      position: relative;
+      width: 297px;
+      height: 24px;
+    }
+
+    .desktop-create-event .frame {
+      display: inline-flex;
+      gap: 32px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .desktop-create-event .text-wrapper-3 {
+      position: relative;
+      width: fit-content;
+      margin-top: -1px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 400;
+      color: var(--baseink);
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .doc {
+      position: absolute;
+      width: 280px;
+      height: 124px;
+      top: 50px;
+      left: 350px;
+    }
+
+    .desktop-create-event .text-wrapper-4 {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 20px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .p {
+      position: absolute;
+      top: 110px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .text-wrapper-5 {
+      position: absolute;
+      top: 55px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: 14.4px;
+      white-space: nowrap;
+    }
+
+    .desktop-create-event .about-us {
+      position: absolute;
+      width: 193px;
+      height: 185px;
+      top: 50px;
+      left: 10px;
+    }
+
+    .desktop-create-event .text-wrapper-6 {
+      position: absolute;
+      width: 200px;
+      top: 0;
+      left: 20px;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 20px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 20px;
+    }
+
+    .desktop-create-event .text-wrapper-7 {
+      position: absolute;
+      width: 200px;
+      top: 55px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-create-event .text-wrapper-8 {
+      position: absolute;
+      width: 200px;
+      top: 111px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+
+    .desktop-create-event .text-wrapper-9 {
+      position: absolute;
+      width: 200px;
+      top: 166px;
+      left: 0;
+      font-family: "Public Sans", Helvetica;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+      text-align: left;
+      letter-spacing: 0;
+      line-height: 14.4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop-create-event">
+    <div class="div">
+      <footer class="footer">
+        <div class="thng-tin-lin-lc">
+          <div class="agency">
+            <img class="ellipse"/>
+            <div class="text-wrapper">Ticket Booking</div>
+          </div>
+          <div class="contact">
+            <div class="socials">
+              <div class="icon-wrapper"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></div>
+              <div class="icon-wrapper"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" /></div>
+              <div class="icon-wrapper"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733646.png" alt="YouTube" /></div>
+              <div class="icon-wrapper"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" /></div>
+              <div class="icon-wrapper"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/2089/2089829.png" alt="RSS" /></div>
+            </div>
+            <div class="agency-contact">
+              <div class="text-wrapper-2">Follow us</div>
+              <div class="group">
+                <div class="frame">
+                  <div class="text-wrapper-3">(08) 9453654</div>
+                  <div class="text-wrapper-3">infoticket@gmail.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="doc">
+          <div class="text-wrapper-4">Tài liệu</div>
+          <p class="p">Điều khoản sử dụng khách hàng</p>
+          <p class="text-wrapper-5">Điều khoản sử dụng cho ban tổ chức</p>
+        </div>
+        <div class="about-us">
+          <div class="text-wrapper-6">Về chúng tôi</div>
+          <div class="text-wrapper-7">Chính sách</div>
+          <div class="text-wrapper-8">Quy chế</div>
+          <div class="text-wrapper-9">Phương thức thanh toán</div>
+        </div>
+      </footer>
+      
+      <header class="header">
+        <div class="text-wrapper-10">Ticket Booking</div>
+        <div class="account">
+          <div class="text-wrapper-11">Tài khoản</div>
+          <div class="ellipse-2"></div>
+          <div class="account-arrow">▼</div>
+          <div class="dropdown-menu">
+            <a href="#">Thông tin tài khoản</a>
+            <a href="#">Cài đặt</a>
+            <a href="#">Đăng xuất</a>
+          </div>
+        </div>
+        <div class="text-wrapper-12">Tạo sự kiện</div>
+      </header>
+      
+      <div class="left-side">
+        <div class="to-s-kin">
+          <div class="text-wrapper-13">Tạo sự kiện</div>
+          <img class="icon-2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/%3E%3C/svg%3E" alt="Icon" />
+        </div>
+        <div class="event">
+          <div class="text-wrapper-14">Sự kiện đã tạo</div>
+          <img class="icon-3" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z'/%3E%3C/svg%3E" alt="Icon" />
+        </div>
+      </div>
+      
+      <div class="right-side">
+        <div class="request-type">
+          <div class="overlap-group-wrapper">
+            <div class="overlap-group-2"><div class="text-wrapper-26">Thông tin</div></div>
+          </div>
+          <div class="group-3">
+            <div class="overlap-group-2"><div class="text-wrapper-29">Hình ảnh</div></div>
+          </div>
+          <div class="overlap-wrapper">
+            <div class="overlap-2"><div class="text-wrapper-27">Vé và thời gian</div></div>
+          </div>
+          <div class="group-2">
+            <div class="overlap-group-2"><div class="text-wrapper-28">Cài đặt</div></div>
+          </div>
+        </div>
+        
+        <div class="text-wrapper-22">Các loại vé</div>
+        
+        <div class="table">
+          <div class="overlap">
+            <div class="th-first"><div class="text-wrapper-24">tên vé</div></div>
+            <div class="td-first"><div class="text-wrapper-25">ticket name</div></div>
+            <div class="project-name-wrapper"><div class="text-wrapper-25">ticket name</div></div>
+            <div class="td-first-2"><div class="text-wrapper-25">ticket name</div></div>
+            <div class="td-first-3"><div class="text-wrapper-25">ticket name</div></div>
+            <div class="td-first-4"><div class="text-wrapper-25">ticket name</div></div>
+            <div class="th"><div class="text-wrapper-24">mô tả</div></div>
+            <div class="th-2"><div class="text-wrapper-24">Price</div></div>
+            <div class="td"><div class="text-wrapper-25">Description</div></div>
+            <div class="td-2"><div class="text-wrapper-25">$4.50</div></div>
+            <div class="td-3"><div class="text-wrapper-25">$4.50</div></div>
+            <div class="td-4"><div class="text-wrapper-25">$4.50</div></div>
+            <div class="td-5"><div class="text-wrapper-25">$4.50</div></div>
+            <div class="td-6"><div class="text-wrapper-25">$4.50</div></div>
+            <div class="td-7"><div class="text-wrapper-25">Description</div></div>
+            <div class="td-8"><div class="text-wrapper-25">Description</div></div>
+            <div class="td-9"><div class="text-wrapper-25">Description</div></div>
+            <div class="td-10"><div class="text-wrapper-25">Description</div></div>
+          </div>
+        </div>
+        
+        <div class="line-3"></div>
+        
+        <div class="frame-2">
+          <div class="frame-3">
+            <div class="text-wrapper-16">Tên vé</div>
+            <input type="text" class="input-text" placeholder="Nhập tên vé" id="ticket-name" />
+          </div>
+          <div class="frame-4">
+            <div class="text-wrapper-18">Thời gian bắt đầu</div>
+            <input type="datetime-local" class="input-datetime" id="start-time" />
+          </div>
+          <div class="frame-4">
+            <div class="text-wrapper-18">Thời gian kết thúc</div>
+            <input type="datetime-local" class="input-datetime" id="end-time" />
+          </div>
+          <div class="frame-5">
+            <div class="text-wrapper-16">Giá vé (vnd)</div>
+            <input type="number" class="input-number" placeholder="Nhập giá vé" id="ticket-price" />
+          </div>
+          <div class="frame-5">
+            <div class="text-wrapper-16">Tổng số lượng vé</div>
+            <input type="number" class="input-number" placeholder="Nhập số lượng vé" id="ticket-quantity" />
+          </div>
+        </div>
+        
+        <div class="text-area">
+          <div class="text-input-label">Thông tin vé</div>
+          <div class="frame-6">
+            <div class="editor" contenteditable="true" id="ticket-info">
+              <!-- Người dùng nhập nội dung tại đây -->
+            </div>
+          </div>
+        </div>
+        
+        <button class="button" onclick="addTicket()">
+          <div class="overlap-group">
+            <div class="text-wrapper-23">Thêm vé</div>
+            <img class="icon-4" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/%3E%3C/svg%3E" alt="Add" />
+          </div>
+        </button>
+        
+        <div class="next-page" onclick="goToNextPage()">
+          <div class="text-wrapper-15">Next Page</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <script src="api.js"></script>
+<script src="page3-script.js"></script>
+</body>
+</html>
